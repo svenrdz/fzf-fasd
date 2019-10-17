@@ -1,9 +1,9 @@
 fzf+fasd
 ========
 
-A shell plugin that integrates [fzf] and [fasd] --- tab completion of `z` with fzf's fuzzy search!
+A shell plugin that integrates [fzf] and [fasd] --- tab completion from fasd suggestions with fzf's fuzzy search!
 
-Currently supports zsh only (TODO: bash), and the `z` command (TODO: `d,` and `f,`)
+Currently supports zsh only (TODO: bash), and all `f|a|s|d|z|j|v` commands.
 
 
 Usage
