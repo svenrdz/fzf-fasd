@@ -86,7 +86,7 @@ __fzf_fasd_zsh_completion() {
   # return completion result with $selected
   if [[ -n "$selected" ]]; then
     selected=$(printf %q "$selected")
-    if [[ $fzf_fasd_fun == "a" -o $fzf_fasd_fun == "d" ]]; then
+    if [[ $fzf_fasd_fun == "a" ]] || [[ $fzf_fasd_fun == "d" ]]; then
       if [[ "$selected" != */ ]]; then
         selected="${selected}/"
       fi
