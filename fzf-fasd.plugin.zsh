@@ -86,8 +86,10 @@ __fzf_fasd_zsh_completion() {
   # return completion result with $selected
   if [[ -n "$selected" ]]; then
     selected=$(printf %q "$selected")
-    if [[ "$selected" != */ ]]; then
-      selected="${selected}/"
+    if [[ $fzf_fasd_fun == "a" -o $fzf_fasd_fun == "d" ]]; then
+      if [[ "$selected" != */ ]]; then
+        selected="${selected}/"
+      fi
     fi
     LBUFFER="$cmd $selected"
   fi
