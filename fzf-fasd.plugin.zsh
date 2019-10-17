@@ -38,43 +38,43 @@ __fzf_fasd_zsh_completion() {
 
   # generate completion list from fasd
   local matches_count
-  if [[ $fzf_fasd_fun == "f" ]]; then
+  if [[ $fzf_fasd_fun == f ]]; then
     matches_count=$(__fzf_fasd_generate_matches_f "$slug" | head | wc -l)
-  elif [[ $fzf_fasd_fun == "a" ]]; then
+  elif [[ $fzf_fasd_fun == a ]]; then
     matches_count=$(__fzf_fasd_generate_matches_a "$slug" | head | wc -l)
-  elif [[ $fzf_fasd_fun == "s" ]]; then
+  elif [[ $fzf_fasd_fun == s ]]; then
     matches_count=$(__fzf_fasd_generate_matches_s "$slug" | head | wc -l)
-  elif [[ $fzf_fasd_fun == "d" ]]; then
+  elif [[ $fzf_fasd_fun == d ]]; then
     matches_count=$(__fzf_fasd_generate_matches_d "$slug" | head | wc -l)
   fi
   if [[ "$matches_count" -gt 1 ]]; then
     # >1 results, invoke fzf
-    if [[ $fzf_fasd_fun == "f" ]]; then
+    if [[ $fzf_fasd_fun == f ]]; then
       selected=$(__fzf_fasd_generate_matches_f "$slug" \
           | fzf --query="$slug" --reverse --bind 'shift-tab:up,tab:down' --height '50%'
       )
-    elif [[ $fzf_fasd_fun == "a" ]]; then
+    elif [[ $fzf_fasd_fun == a ]]; then
       selected=$(__fzf_fasd_generate_matches_a "$slug" \
           | fzf --query="$slug" --reverse --bind 'shift-tab:up,tab:down' --height '50%'
       )
-    elif [[ $fzf_fasd_fun == "s" ]]; then
+    elif [[ $fzf_fasd_fun == s ]]; then
       selected=$(__fzf_fasd_generate_matches_s "$slug" \
           | fzf --query="$slug" --reverse --bind 'shift-tab:up,tab:down' --height '50%'
       )
-    elif [[ $fzf_fasd_fun == "d" ]]; then
+    elif [[ $fzf_fasd_fun == d ]]; then
       selected=$(__fzf_fasd_generate_matches_d "$slug" \
           | fzf --query="$slug" --reverse --bind 'shift-tab:up,tab:down' --height '50%'
       )
     fi
   elif [[ "$matches_count" -eq 1 ]]; then
     # 1 result, just complete it
-    if [[ $fzf_fasd_fun == "f" ]]; then
+    if [[ $fzf_fasd_fun == f ]]; then
       selected=$(__fzf_fasd_generate_matches_f "$slug")
-    elif [[ $fzf_fasd_fun == "a" ]]; then
+    elif [[ $fzf_fasd_fun == a ]]; then
       selected=$(__fzf_fasd_generate_matches_a "$slug")
-    elif [[ $fzf_fasd_fun == "s" ]]; then
+    elif [[ $fzf_fasd_fun == s ]]; then
       selected=$(__fzf_fasd_generate_matches_s "$slug")
-    elif [[ $fzf_fasd_fun == "d" ]]; then
+    elif [[ $fzf_fasd_fun == d ]]; then
       selected=$(__fzf_fasd_generate_matches_d "$slug")
     fi
   else;
