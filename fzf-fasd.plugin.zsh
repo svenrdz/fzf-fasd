@@ -89,12 +89,11 @@ __fzf_fasd_zsh_completion() {
     if [[ "$selected" == */ ]]; then
       selected="${selected%/}"
     fi
-    # LBUFFER="$cmd $selected"
-    $cmd $selected
+    LBUFFER="$cmd $selected"
   fi
 
   zle redisplay
-  typeset -f zle-line-init >/dev/null && zle zle-line-init
+  typeset -f zle-line-init >/dev/null && zle zle-line-init && zle accept-line
 }
 
 __fzf_fasd_generate_matches_f() {
