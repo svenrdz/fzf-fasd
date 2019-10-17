@@ -17,7 +17,6 @@ __fzf_fasd_zsh_completion() {
     z d
     j d
     v f
-    V f
   )
 
   fzf_fasd_fun=${funs_map[$cmd]}
