@@ -89,7 +89,8 @@ __fzf_fasd_zsh_completion() {
     if [[ "$selected" == */ ]]; then
       selected="${selected%/}"
     fi
-    LBUFFER="$cmd $selected"
+    # LBUFFER="$cmd $selected"
+    $cmd $selected
   fi
 
   zle redisplay
