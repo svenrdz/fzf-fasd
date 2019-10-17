@@ -28,7 +28,7 @@ __fzf_fasd_zsh_completion() {
 
   # triggered only at commands defined in funs; fallback to default
   if [[ ! $fzf_fasd_fun ]]; then
-    zle ${__fzf_fasd_default_completion:-expand-or-complete}
+    zle ${__fzf_fasd_default_completion:-expand-or-complete-with-indicator}
     return
   fi
 
