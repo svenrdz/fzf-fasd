@@ -93,7 +93,11 @@ __fzf_fasd_zsh_completion() {
   fi
 
   zle redisplay
-  typeset -f zle-line-init >/dev/null && zle zle-line-init && zle accept-line
+  if [[ "$matches_count" -gt 1 ]]; then
+    typeset -f zle-line-init >/dev/null && zle zle-line-init && zle accept-line
+  else
+    typeset -f zle-line-init >/dev/null && zle zle-line-init
+  fi
 }
 
 __fzf_fasd_generate_matches_f() {
