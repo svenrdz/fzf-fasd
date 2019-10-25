@@ -16,7 +16,7 @@ __fzf_fasd_zsh_completion() {
     d d
     z d
     j d
-    v f
+    v fl
     V fl
   )
 
@@ -102,6 +102,7 @@ __fzf_fasd_zsh_completion() {
   fi
 
   zle redisplay
+  # TODO: only type enter if cmd in [z, j, v, V]
   if [[ "$matches_count" -gt 1 ]]; then
     typeset -f zle-line-init >/dev/null && zle zle-line-init && zle accept-line
   else
