@@ -17,7 +17,7 @@ __fzf_fasd_zsh_completion() {
     z d
     j d
     v f
-    V f
+    V fl
   )
 
   fzf_fasd_fun=${funs_map[$cmd]}
@@ -32,8 +32,9 @@ __fzf_fasd_zsh_completion() {
     return
   fi
 
+  # use all additional argument as input to fasd
   if [[ "${#args}" -gt 1 ]]; then
-    eval "slug=${args[-1]}"
+    slug=${args[@]:1}
   fi
 
   # generate completion list from fasd
@@ -46,6 +47,8 @@ __fzf_fasd_zsh_completion() {
     matches_count=$(__fzf_fasd_generate_matches_s "$slug" | head | wc -l)
   elif [[ $fzf_fasd_fun == d ]]; then
     matches_count=$(__fzf_fasd_generate_matches_d "$slug" | head | wc -l)
+  elif [[ $fzf_fasd_fun == fl ]]; then
+    matches_count=$(__fzf_fasd_generate_matches_fl "$slug" | head | wc -l)
   fi
   if [[ "$matches_count" -gt 1 ]]; then
     # >1 results, invoke fzf
@@ -65,6 +68,10 @@ __fzf_fasd_zsh_completion() {
       selected=$(__fzf_fasd_generate_matches_d "$slug" \
           | fzf --query="$slug" --reverse --bind 'shift-tab:up,tab:down' --height '50%'
       )
+    elif [[ $fzf_fasd_fun == fl ]]; then
+      selected=$(__fzf_fasd_generate_matches_fl "$slug" \
+          | fzf --query="$slug" --reverse --bind 'shift-tab:up,tab:down' --height '50%'
+      )
     fi
   elif [[ "$matches_count" -eq 1 ]]; then
     # 1 result, just complete it
@@ -76,6 +83,8 @@ __fzf_fasd_zsh_completion() {
       selected=$(__fzf_fasd_generate_matches_s "$slug")
     elif [[ $fzf_fasd_fun == d ]]; then
       selected=$(__fzf_fasd_generate_matches_d "$slug")
+    elif [[ $fzf_fasd_fun == fl ]]; then
+      selected=$(__fzf_fasd_generate_matches_fl "$slug")
     fi
   else;
     # no result
@@ -119,6 +128,13 @@ __fzf_fasd_generate_matches_d() {
   # -R: make entries with higher score comes earlier
   fasd -d -l -R "$@"
 }
+
+__fzf_fasd_generate_matches_fl() {
+  # -R: make entries with higher score comes earlier
+  fasd -d -l -R "$@"
+  ls -1
+}
+
 
 [ -z "$__fzf_fasd_default_completion" ] && {
   binding=$(bindkey '^I')
